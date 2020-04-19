@@ -20,12 +20,15 @@ export default {
   },
   methods:{
       deletetodo(id){
-          axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+          axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)//backticks are used in order to delete todo, we have to add id in the end of url (a variable) by adding slash
           .then(this.todos = this.todos.filter((todo)=> todo.id !== id))
           .catch(err => console.log(err))
       },
       addtodo(newtodo){
-          this.todos = [...this.todos, newtodo]
+          const{title, completed} = newtodo
+          axios.post("https://jsonplaceholder.typicode.com/todos", {title, completed})
+            .then(res => this.todos = [...this.todos, res.data])
+            .catch(err => console.log(err))
       }
   },
   created(){
