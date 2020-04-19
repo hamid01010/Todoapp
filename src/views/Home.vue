@@ -8,6 +8,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import addtodo from "../components/Todoapp/Addtodo"
 import todos from "../components/Todoapp/todos"
 // @ is an alias to /src
@@ -25,20 +26,14 @@ export default {
           this.todos = [...this.todos, newtodo]
       }
   },
+  created(){
+      axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+      .then(res => this.todos = res.data)
+      .catch(err => console.log(err))
+  },
   data(){
       return{
-          todos:[
-              {
-                  id: 1,
-                  title: "jhjgjklhjklh",
-                  completed: false
-              },
-              {
-                  id: 2,
-                  title: "vbbnvnbv",
-                  completed: false
-              }
-          ]
+          todos:[]
       }
   }  
 }
