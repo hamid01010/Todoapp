@@ -20,7 +20,9 @@ export default {
   },
   methods:{
       deletetodo(id){
-          this.todos = this.todos.filter((todo)=> todo.id !== id)
+          axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+          .then(this.todos = this.todos.filter((todo)=> todo.id !== id))
+          .catch(err => console.log(err))
       },
       addtodo(newtodo){
           this.todos = [...this.todos, newtodo]
