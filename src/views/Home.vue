@@ -25,7 +25,7 @@ export default {
           .catch(err => console.log(err))
       },
       addtodo(newtodo){
-          const{title, completed} = newtodo
+          const{title, completed} = newtodo//destructuring
           axios.post("https://jsonplaceholder.typicode.com/todos", {title, completed})
             .then(res => this.todos = [...this.todos, res.data])
             .catch(err => console.log(err))
